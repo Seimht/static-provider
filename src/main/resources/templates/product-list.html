@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product List</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #333; /* Dark background */
+            color: white; /* Light text for contrast */
+            font-family: 'Times New Roman', Times, serif; /* Times New Roman font */
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+            color: white;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            font-weight: bold;
+            background-color: #444;
+        }
+        td {
+            background-color: #555;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #271ad4;
+        }
+        nav {
+            background-color: #222; /* Dark background for the navbar */
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            margin: 0 10px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            background-color: #271ad4;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="/api/products/all">Products</a>
+    <a href="/api/providers/all">Providers</a>
+    <a href="/api/sales/all">Sales</a>
+</nav>
+<h1>Product List</h1>
+<a th:href="@{/api/products/new}" class="button">Create New Product</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Provider ID</th>
+        <th>Stock</th>
+        <th>Price</th> <!-- New column -->
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${productList}">
+        <td th:text="${product.productId}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.providerId}"></td>
+        <td th:text="${product.stock}"></td>
+        <td th:text="${product.price}"></td> <!-- Display price -->
+        <td>
+            <a th:href="@{/api/products/view/{productId}(productId=${product.productId})}" class="button">View</a>
+            <a th:href="@{/api/products/update/{productId}(productId=${product.productId})}" class="button">Edit</a>
+            <a th:href="@{/api/products/delete/{productId}(productId=${product.productId})}" class="button">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

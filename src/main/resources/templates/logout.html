@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f8f9fa; color: #333; }
+        .navbar { background-color: #007bff; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .navbar a { color: white; text-decoration: none; margin: 0 10px; }
+        .navbar .logout-form { display: inline; }
+        .logout-button { background-color: #ff4d4d; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
+        .logout-button:hover { background-color: #d43535; }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <div>
+        <a href="/products" th:href="@{/products}">Products</a>
+        <a href="/providers" th:href="@{/providers}">Providers</a>
+        <a href="/sales" th:href="@{/sales}">Sales</a>
+    </div>
+    <div>
+        <!-- Logout Button -->
+        <form th:action="@{/logout}" method="post" class="logout-form">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
+</div>
+<h1>Welcome, <span th:text="${#authentication.name}"></span>!</h1>
+</body>
+</html>

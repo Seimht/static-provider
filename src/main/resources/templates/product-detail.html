@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product Details</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #333; /* Dark background */
+            color: white; /* Light text for contrast */
+            font-family: 'Times New Roman', Times, serif; /* Times New Roman font */
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #271ad4;
+        }
+        nav {
+            background-color: #222; /* Dark background for the navbar */
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            margin: 0 10px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            background-color: #271ad4;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="/api/products/all">Products</a>
+    <a href="/api/providers/all">Providers</a>
+    <a href="/api/sales/all">Sales</a>
+</nav>
+<h1 th:text="'Product: ' + ${product.name}"></h1>
+<p>Provider ID: <span th:text="${product.providerId}"></span></p>
+<p>Stock: <span th:text="${product.stock}"></span></p>
+<p>Price: $<span th:text="${product.price}"></span></p> <!-- Display price -->
+<a th:href="@{/api/products/all}" class="button">Back to List</a>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #333; /* Dark background */
+            color: white; /* Light text for contrast */
+            font-family: 'Times New Roman', Times, serif; /* Times New Roman font */
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        form {
+            background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px; /* Slightly smaller width */
+            margin-top: 20px; /* Add margin to keep some space above */
+            margin: 20px auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: #444;
+            color: white;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            width: 100%;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #271ad4;
+        }
+    </style>
+</head>
+<body>
+<h1>Login Page</h1>
+<form th:action="@{/login}" method="post">
+    <div th:if="${errorMsg != null}">
+        <p th:text="${errorMsg}"></p>
+    </div>
+    <div th:if="${msg != null}">
+        <p th:text="${msg}"></p>
+    </div>
+    <p><label>Username: <input type="text" name="username"/></label></p>
+    <p><label>Password: <input type="password" name="password"/></label></p>
+    <p><button type="submit" class="button">Login</button></p>
+</form>
+</body>
+</html>

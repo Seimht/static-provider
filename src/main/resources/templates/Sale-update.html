@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update Sale</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #333; /* Dark background */
+            color: white; /* Light text for contrast */
+            font-family: 'Times New Roman', Times, serif; /* Times New Roman font */
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        form {
+            background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px; /* Slightly smaller width */
+            margin-top: 20px; /* Add margin to keep some space above */
+            margin: 20px auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: #444;
+            color: white;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            width: 100%;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #271ad4;
+        }
+        nav {
+            background-color: #222; /* Dark background for the navbar */
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            margin: 0 10px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            background-color: #271ad4;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="/api/products/all">Products</a>
+    <a href="/api/providers/all">Providers</a>
+    <a href="/api/sales/all">Sales</a>
+</nav>
+<h1>Update Sale</h1>
+<form th:action="@{/api/sales/update}" th:object="${sale}" method="post">
+    <input type="hidden" th:field="*{saleId}">
+
+    <label for="productId">Product ID:</label>
+    <input type="text" id="productId" th:field="*{productId}" required class="input-text">
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" th:field="*{quantity}" required class="input-text">
+
+    <label for="total">Total:</label>
+    <input type="text" id="total" th:field="*{total}" required class="input-text">
+
+    <label for="date">Date:</label>
+    <input type="text" id="date" th:field="*{date}" required class="input-text">
+
+    <button type="submit" class="button">Update</button>
+</form>
+</body>
+</html>
